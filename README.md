@@ -150,7 +150,7 @@ As an open-source project, we welcome contributions from the community to help i
 
 1. **Fork the Repository**
    
-    Fork the [Scrum Poker API repository](https://github.com/marcelowf/Scrum-Poker-API) to your own GitHub account.
+    Fork the [Scrum Poker API repository](https://github.com/marcelowf/Scrum_Flush_Api) to your own GitHub account.
 
 2. **Clone Your Fork**
    
