@@ -1,0 +1,14 @@
+bin/
+obj/
+node_modules/
+.nuget/
+.vscode/
+.idea/
+.env
+*.log
+tmp/
+cache/
+.git/
+.gitignore
+Dockerfile*
+docker-compose.yml
