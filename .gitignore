@@ -14,7 +14,5 @@ packages/
 tmp/
 cache/
 *.db
-# Primeiro testar as SPs
-# *.sql
 .DS_Store
 Thumbs.db

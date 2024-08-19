@@ -1,32 +1,12 @@
-# Scrum Poker API 🃏
-> **Status: Developing** ⚠️
-###### About the Project
-This API is a free and open-source tool designed to facilitate agile estimation, planning sessions in a Scrum environment and also provides a robust platform for teams to engage in collaborative estimation sessions using Scrum Poker, also known as Planning Poker.
+# Scrum Flush API 🃏
 
-###### Features
-- **Session Management**: Create, manage, and participate in Scrum Poker sessions.
-- **Team Collaboration**: Allow multiple users to join and participate in estimation sessions.
-- **Sprint & Card Management**: Organize sprints and manage cards used during estimation rounds.
-- **Voting Mechanism**: Enable users to vote on cards and record their estimates.
-- **Historical Data**: Track and store historical data of sessions, votes, and sprints.
-- **Analytics**: Perform analysis on data from teams, sessions, and individual votes.
+![Documentation Status](https://img.shields.io/badge/docs-up--to--date-brightgreen?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/marcelowf/Scrum_Flush_Api?style=for-the-badge) 
 
+###### 🚀 About the Project
+This API is a free and open-source tool designed to streamline agile estimation and planning within Scrum environments. It allows teams to effortlessly create and manage Scrum Poker sessions, fostering real-time collaboration among multiple users. The API supports the organization of sprints and the management of estimation cards used during planning rounds. Users can vote on cards, capture their estimates, and track historical data for sessions, votes, and sprints. Additionally, it offers robust analytics features to gain insights into team performance and session outcomes, helping to improve the estimation process.
 
-###### Technology Stack
-This API is built with **C#**, leveraging its features for a scalable and maintainable codebase. I used **Swagger** to create comprehensive documentation and interactive exploration of the API. **Entity Framework** simplifies database interactions and management with **SQL Server**, and the design follows **Domain-Driven Design (DDD)** principles to ensure a well-structured and cohesive system.
-
-<table>
-    <tr>
-        <td>DotNet</td>
-        <td>Entity Framework</td>
-        <td>SQL Server</td>
-    </tr>
-    <tr>
-        <td>8.0</td>
-        <td>8.0</td>
-        <td>19</td>
-    </tr>
-</table>
+[![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/) [![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server) [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/) [![Entity Framework](https://img.shields.io/badge/Entity_Framework-86B049?style=for-the-badge&logo=entity-framework&logoColor=white)](https://docs.microsoft.com/en-us/ef/) [![DDD](https://img.shields.io/badge/DDD-1B4F72?style=for-the-badge&logo=none&logoColor=white)](https://www.domainlanguage.com/ddd/)
 
 ## ♣️ Getting Started
 🚩 In Development
