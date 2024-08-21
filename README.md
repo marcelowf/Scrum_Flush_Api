@@ -3,7 +3,7 @@
 ![Documentation Status](https://img.shields.io/badge/docs-up--to--date-brightgreen?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/marcelowf/Scrum_Flush_Api?style=for-the-badge) 
 
-###### 🚀 About the Project
+#### 🚀 About the Project
 This API is a free and open-source tool designed to streamline agile estimation and planning within Scrum environments. It allows teams to effortlessly create and manage Scrum Poker sessions, fostering real-time collaboration among multiple users. The API supports the organization of sprints and the management of estimation cards used during planning rounds. Users can vote on cards, capture their estimates, and track historical data for sessions, votes, and sprints. Additionally, it offers robust analytics features to gain insights into team performance and session outcomes, helping to improve the estimation process.
 
 [![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/) [![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server) [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/) [![Entity Framework](https://img.shields.io/badge/Entity_Framework-86B049?style=for-the-badge&logo=entity-framework&logoColor=white)](https://docs.microsoft.com/en-us/ef/) [![DDD](https://img.shields.io/badge/DDD-1B4F72?style=for-the-badge&logo=none&logoColor=white)](https://www.domainlanguage.com/ddd/)
@@ -167,4 +167,4 @@ As an open-source project, we welcome contributions from the community to help i
     
     Open a pull request on the original repository, describing your changes and why they should be merged.
 
-### If you have any questions, issues, or need support, please reach out to us at marcelowzorekfilho@gmail.com.
+#### If you have any questions, issues, or need support, please reach out to us at marcelowzorekfilho@gmail.com.

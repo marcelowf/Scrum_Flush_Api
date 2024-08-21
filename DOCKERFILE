@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
+
+COPY *.sln ./
+
+COPY ScrumFlush.Api/*.csproj ./ScrumFlush.Api/
+COPY ScrumFlush.Infrastructure/*.csproj ./ScrumFlush.Infrastructure/
+COPY ScrumFlush.Application/*.csproj ./ScrumFlush.Application/
+COPY ScrumFlush.Domain/*.csproj ./ScrumFlush.Domain/
+COPY ScrumFlush.Service/*.csproj ./ScrumFlush.Service/
+
+RUN dotnet restore
+
+COPY . .
+
+WORKDIR /app/ScrumFlush.Api
+
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+COPY --from=build /app/ScrumFlush.Api/out ./
+
+ENTRYPOINT ["dotnet", "ScrumFlush.Api.dll"]
