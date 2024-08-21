@@ -1,6 +1,5 @@
 # Scrum Flush API 🃏
 
-![Documentation Status](https://img.shields.io/badge/docs-up--to--date-brightgreen?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/marcelowf/Scrum_Flush_Api?style=for-the-badge) 
 
 #### 🚀 About the Project
@@ -128,43 +127,27 @@ This API is a free and open-source tool designed to streamline agile estimation 
 
 As an open-source project, we welcome contributions from the community to help improve the Scrum Poker API. To contribute, please follow these steps:
 
-1. **Fork the Repository**
-   
-    Fork the [Scrum Poker API repository](https://github.com/marcelowf/Scrum_Flush_Api) to your own GitHub account.
-
-2. **Clone Your Fork**
-   
-    Clone your forked repository to your local machine:
+1. **Fork** the [Scrum Poker API repository](https://github.com/marcelowf/Scrum_Flush_Api) to your own GitHub account and **Clone Your Fork** to your local machine:
     ```bash
     git clone https://github.com/marcelowf/Scrum-Poker-API.git
     ```
-    
-3. **Create a Branch**
-   
-    Create a new branch for your changes:
+
+2. **Create a Branch** for your changes:
     ```bash
     git checkout -b feature/your-feature
     ```
 
-4. **Make Your Changes**
-   
-    Implement your changes or features and ensure that all tests pass.
-
-5. **Commit Your Changes**
-   
-    Commit your changes with a descriptive message:
+3. **Implement Your Changes** or features and **Commit** with a descriptive message:
     ```bash
     git add .
     git commit -m "Add feature: your-feature"
     ```
-6. **Push Your Branch**
-   
-    Push your changes to your forked repository:
+
+4. **Push Your Changes** to your forked repository:
     ```bash
     git push origin feature/your-feature
     ```
-7. **Create a Pull Request**
-    
-    Open a pull request on the original repository, describing your changes and why they should be merged.
 
-#### If you have any questions, issues, or need support, please reach out to us at marcelowzorekfilho@gmail.com.
+5. **Create a Pull Request** on the original repository, describing your changes and why they should be merged.
+
+##### If you have any questions, issues, or need support, please reach out to us at marcelowzorekfilho@gmail.com.

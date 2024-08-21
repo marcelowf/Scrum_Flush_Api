@@ -1,50 +1,34 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using ScrumFlush.Infrastructure;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<SqlContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(gen =>
 {
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    gen.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Scrum Flush Api",
-        Version = "v1"
+        Version = "v1.00.00",
+        Contact = new OpenApiContact
+        {
+            Name = "Scrum Flush",
+            Email = "marcelowzorekfilho@gimal.com"
+        }
     });
 });
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Scrum Flush Api V1");
-        c.RoutePrefix = string.Empty;
-    });
-}
-else
-{
-    app.UseHsts();
-}
-
-IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-{
-    webBuilder.UseStartup<IStartup>();
-    webBuilder.UseUrls("http://*:80");
-});
-
+app.UseDeveloperExceptionPage();
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthorization();
 app.MapControllers();
 app.Run();
