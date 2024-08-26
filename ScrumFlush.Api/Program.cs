@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ScrumFlush.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +8,6 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(gen =>
 {
@@ -22,11 +23,19 @@ builder.Services.AddSwaggerGen(gen =>
     });
 });
 
+builder.Services.AddDbContext<SqlContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+    b => b.MigrationsAssembly("ScrumFlush.Infrastructure")));
+
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

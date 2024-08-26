@@ -5,9 +5,7 @@ namespace ScrumFlush.Infrastructure
     public class SqlContext : DbContext
     {
         public SqlContext(DbContextOptions<SqlContext> options) : base(options) {}
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
 
-        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {}
     }
 }
