@@ -1,6 +1,6 @@
 using Autofac;
 
-namespace ScrumFlush.Infrastructure
+namespace ScrumFlush.Infrastructure.CrossCutting.IOC
 {
     public class ConfigurationIOC
     {

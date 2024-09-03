@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using ScrumFlush.Infrastructure;
+using ScrumFlush.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

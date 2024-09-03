@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace ScrumFlush.Infrastructure
+namespace ScrumFlush.Infrastructure.Context
 {
     public class SqlContextFactory : IDesignTimeDbContextFactory<SqlContext>
     {
