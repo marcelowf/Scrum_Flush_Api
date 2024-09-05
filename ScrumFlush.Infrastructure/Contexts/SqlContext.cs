@@ -27,98 +27,72 @@ namespace ScrumFlush.Infrastructure.Context
         {
             modelBuilder.Entity<Vote>()
                 .HasOne(p => p.Round)
-                .WithMany()
-                .HasForeignKey(p => p.RoundId)
-                .IsRequired();
+                .WithMany(p => p.Votes)
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Vote>()
                 .HasOne(p => p.Player)
-                .WithMany()
-                .HasForeignKey(p => p.PlayerId)
-                .IsRequired();
+                .WithMany(p => p.Votes)
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Vote>()
                 .HasOne(p => p.Card)
-                .WithMany()
-                .HasForeignKey(p => p.CardId)
-                .IsRequired();
-
-            modelBuilder.Entity<Team>()
-                .HasOne(p => p.Manager)
-                .WithMany()
-                .HasForeignKey(p => p.ManagerId)
-                .IsRequired();
+                .WithMany(p => p.Votes)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<TeamUser>()
                 .HasOne(p => p.Team)
-                .WithMany()
-                .HasForeignKey(p => p.TeamId)
-                .IsRequired();
+                .WithMany(p => p.TeamUsers)
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<TeamUser>()
                 .HasOne(p => p.User)
-                .WithMany()
-                .HasForeignKey(p => p.UserId)
-                .IsRequired();
+                .WithMany(p => p.TeamUsers)
+                .OnDelete(DeleteBehavior.Restrict);
                 
             modelBuilder.Entity<TeamSprint>()
                 .HasOne(p => p.Team)
-                .WithMany()
-                .HasForeignKey(p => p.TeamId)
-                .IsRequired();
+                .WithMany(p => p.TeamSprints)
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<TeamSprint>()
                 .HasOne(p => p.Sprint)
-                .WithMany()
-                .HasForeignKey(p => p.SprintId)
-                .IsRequired();
+                .WithMany(p => p.TeamSprints)
+                .OnDelete(DeleteBehavior.Restrict);
                 
             modelBuilder.Entity<Storie>()
                 .HasOne(p => p.Sprint)
-                .WithMany()
-                .HasForeignKey(p => p.SprintId)
-                .IsRequired();
+                .WithMany(p => p.Stories)
+                .OnDelete(DeleteBehavior.Restrict);
                 
             modelBuilder.Entity<Round>()
                 .HasOne(p => p.Storie)
-                .WithMany()
-                .HasForeignKey(p => p.StorieId)
-                .IsRequired();
+                .WithMany(p => p.Rounds)
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Round>()
                 .HasOne(p => p.Room)
-                .WithMany()
-                .HasForeignKey(p => p.RoomId)
-                .IsRequired();
-                
-            modelBuilder.Entity<Room>()
-                .HasOne(p => p.Leader)
-                .WithMany()
-                .HasForeignKey(p => p.LeaderId)
-                .IsRequired();
-            modelBuilder.Entity<Room>()
-                .HasOne(p => p.Sprint)
-                .WithMany()
-                .HasForeignKey(p => p.SprintId)
-                .IsRequired();
+                .WithMany(p => p.RoomRounds)
+                .OnDelete(DeleteBehavior.Restrict);
                 
             modelBuilder.Entity<RoomPlayer>()
                 .HasOne(p => p.Player)
-                .WithMany()
-                .HasForeignKey(p => p.PlayerId)
-                .IsRequired();
+                .WithMany(p => p.RoomPlayers)
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<RoomPlayer>()
                 .HasOne(p => p.Room)
-                .WithMany()
-                .HasForeignKey(p => p.RoomId)
-                .IsRequired();
+                .WithMany(p => p.RoomPlayers)
+                .OnDelete(DeleteBehavior.Restrict);
                 
+            modelBuilder.Entity<Room>()
+                .HasOne(p => p.Sprint)
+                .WithMany(p => p.Rooms)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Player>()
                 .HasOne(p => p.User)
-                .WithMany()
-                .HasForeignKey(p => p.UserId)
-                .IsRequired();
-                
+                .WithMany(p => p.Players)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Card>()
                 .HasOne(p => p.Collection)
-                .WithMany()
-                .HasForeignKey(p => p.CollectionId)
-                .IsRequired();
+                .WithMany(p => p.Cards)
+                .OnDelete(DeleteBehavior.Restrict);
                         
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
@@ -129,7 +103,7 @@ namespace ScrumFlush.Infrastructure.Context
                 }
             }
         }
- 
+   
         private static LambdaExpression CreateQueryFilter(Type entityType)
         {
             var parameter = Expression.Parameter(entityType, "e");
