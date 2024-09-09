@@ -1,8 +1,24 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ScrumFlush.Infrastructure.Context;
+using ScrumFlush.Infrastructure.CrossCutting.IOC;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterModule(new ModuleIOC());
+});
+
+builder.Services.AddCors(o => o.AddPolicy(name: "MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+}));
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
@@ -36,8 +52,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("MyPolicy");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+//app.UseAuthentication(); 
+//app.UseAuthorization();
 app.MapControllers();
 app.Run();

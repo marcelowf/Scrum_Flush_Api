@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ScrumFlush.Domain.Halper;
 
 namespace ScrumFlush.Domain.Entity
 {
-    public class TeamUser : EntityTemplate
+    public class TeamUser : BaseEntity
     {
         [Required, ForeignKey("Team")]
         public Guid TeamId { get; set; }

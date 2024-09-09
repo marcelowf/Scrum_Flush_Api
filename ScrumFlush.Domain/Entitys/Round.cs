@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ScrumFlush.Domain.Halper;
 
 namespace ScrumFlush.Domain.Entity
 {
-    public class Round : EntityTemplate
+    public class Round : BaseEntity
     {
         [Required, ForeignKey("Room")]
         public Guid RoomId { get; set; }

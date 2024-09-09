@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using ScrumFlush.Domain.Halper;
 
 namespace ScrumFlush.Domain.Entity
 {
-    public class Sprint : EntityTemplate
+    public class Sprint : BaseEntity
     {
         [Required ,MaxLength(50)]
         public required string Name { get; set; }

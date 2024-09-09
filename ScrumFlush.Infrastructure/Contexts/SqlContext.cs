@@ -1,7 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using ScrumFlush.Domain.Entity;
-using ScrumFlush.Domain.Halper;
 
 namespace ScrumFlush.Infrastructure.Context
 {
@@ -96,7 +95,7 @@ namespace ScrumFlush.Infrastructure.Context
                         
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                if (typeof(EntityTemplate).IsAssignableFrom(entityType.ClrType))
+                if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
                 {
                     modelBuilder.Entity(entityType.ClrType)
                         .HasQueryFilter(CreateQueryFilter(entityType.ClrType));
