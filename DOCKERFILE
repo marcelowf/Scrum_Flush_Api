@@ -4,9 +4,10 @@ WORKDIR /app
 COPY *.sln ./
 
 COPY ScrumFlush.Api/*.csproj ./ScrumFlush.Api/
-COPY ScrumFlush.Infrastructure/*.csproj ./ScrumFlush.Infrastructure/
 COPY ScrumFlush.Application/*.csproj ./ScrumFlush.Application/
+COPY ScrumFlush.Core/*.csproj ./ScrumFlush.Core/
 COPY ScrumFlush.Domain/*.csproj ./ScrumFlush.Domain/
+COPY ScrumFlush.Infrastructure/*.csproj ./ScrumFlush.Infrastructure/
 COPY ScrumFlush.Service/*.csproj ./ScrumFlush.Service/
 
 RUN dotnet restore

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumFlush.Api", "ScrumFlus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumFlush.Service", "ScrumFlush.Service\ScrumFlush.Service.csproj", "{9C8145BA-B150-47A9-91DC-ACC2F0EB556B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumFlush.Core", "ScrumFlush.Core\ScrumFlush.Core.csproj", "{F4E83A56-9E5D-45F1-9BB7-A7393339A467}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{9C8145BA-B150-47A9-91DC-ACC2F0EB556B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C8145BA-B150-47A9-91DC-ACC2F0EB556B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C8145BA-B150-47A9-91DC-ACC2F0EB556B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E83A56-9E5D-45F1-9BB7-A7393339A467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E83A56-9E5D-45F1-9BB7-A7393339A467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E83A56-9E5D-45F1-9BB7-A7393339A467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E83A56-9E5D-45F1-9BB7-A7393339A467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ScrumFlush.Domain\ScrumFlush.Domain.csproj" />
-    <ProjectReference Include="..\ScrumFlush.Core\ScrumFlush.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

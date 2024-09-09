@@ -23,6 +23,7 @@
     <ProjectReference Include="..\ScrumFlush.Application\ScrumFlush.Application.csproj" />
     <ProjectReference Include="..\ScrumFlush.Domain\ScrumFlush.Domain.csproj" />
     <ProjectReference Include="..\ScrumFlush.Service\ScrumFlush.Service.csproj" />
+    <ProjectReference Include="..\ScrumFlush.Core\ScrumFlush.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

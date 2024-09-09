@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ScrumFlush.Domain.Halper
+namespace ScrumFlush.Domain.Entity
 {
-    public class EntityTemplate
+    public class BaseEntity
     {
         [Key ,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
