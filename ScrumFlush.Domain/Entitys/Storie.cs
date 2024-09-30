@@ -5,7 +5,7 @@ namespace ScrumFlush.Domain.Entity
 {
     public class Storie : BaseEntity
     {
-        [Required, ForeignKey("Sprint")]
+        [ForeignKey("Sprint")]
         public Guid? SprintId { get; set; }
         public Sprint? Sprint { get; set; }
         

@@ -5,7 +5,7 @@ namespace ScrumFlush.Domain.Entity
 {
     public class Player : BaseEntity
     {
-        [Required, ForeignKey("User")]
+        [ForeignKey("User")]
         public Guid? UserId { get; set; }
         public User? User { get; set; }
 
@@ -16,7 +16,7 @@ namespace ScrumFlush.Domain.Entity
         public required string Role { get; set; }
 
         [Required]
-        public required  int Type {get; set; }
+        public required int Type {get; set; }
         
         [Required]
         public required ICollection<RoomPlayer> RoomPlayers { get; set; }

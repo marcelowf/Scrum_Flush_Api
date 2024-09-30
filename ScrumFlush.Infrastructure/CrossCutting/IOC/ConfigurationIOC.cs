@@ -14,10 +14,9 @@ namespace ScrumFlush.Infrastructure.CrossCutting.IOC
     {
         public static void Load(ContainerBuilder builder)
         {
-            // Registra o AutoMapper
             builder.Register(ctx => new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<AutoMapperProfiles>(); // Adicione seu perfil de mapeamento
+                cfg.AddProfile<AutoMapperProfiles>(); // Perfil de mapeamento
             }).CreateMapper())
             .As<IMapper>()
             .InstancePerLifetimeScope();

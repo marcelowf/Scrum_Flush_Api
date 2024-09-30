@@ -12,8 +12,8 @@ using ScrumFlush.Infrastructure.Context;
 namespace ScrumFlush.Infrastructure.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20240905145220_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240930112603_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,7 +128,6 @@ namespace ScrumFlush.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<Guid?>("UserId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -169,7 +168,7 @@ namespace ScrumFlush.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("SprintId")
+                    b.Property<Guid?>("SprintId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -203,8 +202,10 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PlayerRole")
-                        .HasColumnType("int");
+                    b.Property<string>("PlayerRole")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
@@ -243,7 +244,6 @@ namespace ScrumFlush.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("StorieId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -326,7 +326,6 @@ namespace ScrumFlush.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<Guid?>("SprintId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -546,8 +545,7 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.HasOne("ScrumFlush.Domain.Entity.User", "User")
                         .WithMany("Players")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -557,8 +555,7 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.HasOne("ScrumFlush.Domain.Entity.Sprint", "Sprint")
                         .WithMany("Rooms")
                         .HasForeignKey("SprintId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Sprint");
                 });
@@ -593,8 +590,7 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.HasOne("ScrumFlush.Domain.Entity.Storie", "Storie")
                         .WithMany("Rounds")
                         .HasForeignKey("StorieId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Room");
 
@@ -606,8 +602,7 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.HasOne("ScrumFlush.Domain.Entity.Sprint", "Sprint")
                         .WithMany("Stories")
                         .HasForeignKey("SprintId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Sprint");
                 });

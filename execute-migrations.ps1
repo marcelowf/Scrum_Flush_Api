@@ -1,6 +1,8 @@
 $infrastructurePath = ".\ScrumFlush.Infrastructure\"
 $apiPath = "..\ScrumFlush.Api"
 
+# dotnet ef migrations add FirstMigration --startup-project ../ScrumFlush.API
+
 try {
     Set-Location $infrastructurePath
     dotnet ef database update --context SqlContext --startup-project $apiPath
