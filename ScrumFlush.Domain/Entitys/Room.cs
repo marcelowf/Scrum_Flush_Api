@@ -5,9 +5,9 @@ namespace ScrumFlush.Domain.Entity
 {
     public class Room : BaseEntity
     {
-        [Required, ForeignKey("Sprint")]
-        public Guid SprintId { get; set; }
-        public required Sprint Sprint { get; set; }
+        [ForeignKey("Sprint")]
+        public Guid? SprintId { get; set; }
+        public Sprint? Sprint { get; set; }
 
         [Required ,MaxLength(50)]
         public required string Name { get; set; }

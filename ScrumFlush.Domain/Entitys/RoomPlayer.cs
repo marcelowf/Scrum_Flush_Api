@@ -13,7 +13,7 @@ namespace ScrumFlush.Domain.Entity
         public Guid PlayerId { get; set; }
         public required Player Player { get; set; }
 
-        [Required]
-        public required int PlayerRole { get; set; }
+        [Required ,MaxLength(15)]
+        public required string PlayerRole { get; set; }
     }
 }

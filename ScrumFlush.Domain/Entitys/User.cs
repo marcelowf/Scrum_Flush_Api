@@ -4,13 +4,12 @@ namespace ScrumFlush.Domain.Entity
 {
     public class User : BaseEntity
     {
-        [Required ,MaxLength(50)]
+        [MaxLength(50)]
         public required string Name { get; set; }
 
-        [Required,MaxLength(100)]
+        [MaxLength(100)]
         public required string Email { get; set; }
 
-        [Required]
         public required int Role { get; set; }
         
         [MaxLength(50)]

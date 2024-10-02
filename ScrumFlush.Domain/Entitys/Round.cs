@@ -9,7 +9,7 @@ namespace ScrumFlush.Domain.Entity
         public Guid RoomId { get; set; }
         public required Room Room { get; set; }
 
-        [Required, ForeignKey("Storie")]
+        [ForeignKey("Storie")]
         public Guid? StorieId { get; set; }
         public Storie? Storie { get; set; }
         
