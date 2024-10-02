@@ -67,7 +67,6 @@ namespace ScrumFlush.Infrastructure.Repositories
                 return false;
             }
 
-            // Assuming the entity has a property called `IsDeleted` for soft deletion
             var property = typeof(TEntity).GetProperty("IsDeleted");
             if (property != null)
             {

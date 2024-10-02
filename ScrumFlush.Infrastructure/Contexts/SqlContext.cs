@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using ScrumFlush.Application.Utilitys;
 using ScrumFlush.Domain.Entity;
 
 namespace ScrumFlush.Infrastructure.Context
@@ -116,6 +117,23 @@ namespace ScrumFlush.Infrastructure.Context
             var combinedFilter = Expression.AndAlso(isDeletedFalse, createdByIdGreaterThanZero);
 
             return Expression.Lambda(combinedFilter, parameter);
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("CreatedAt") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("CreatedAt").CurrentValue = DateTimeZone.HrBrasilia(DateTime.UtcNow);
+                }
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("ModifiedAt").CurrentValue = DateTimeZone.HrBrasilia(DateTime.UtcNow);
+                }
+            }
+
+            return await base.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }
