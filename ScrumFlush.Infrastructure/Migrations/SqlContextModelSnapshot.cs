@@ -34,8 +34,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -43,8 +43,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<float?>("Value")
                         .HasColumnType("real");
@@ -65,8 +65,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -78,8 +78,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -100,8 +100,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -109,17 +109,16 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PlayerType")
+                        .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -148,8 +147,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -157,8 +156,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -184,8 +183,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -193,19 +192,18 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PlayerRole")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("RoomPlayerRole")
+                        .HasMaxLength(15)
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -225,8 +223,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -234,8 +232,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
@@ -261,8 +259,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -270,18 +268,15 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalPoints")
+                    b.Property<int>("SprintStatus")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -298,8 +293,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -311,8 +306,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -341,8 +336,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -354,8 +349,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -376,8 +371,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -385,8 +380,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SprintId")
                         .HasColumnType("uniqueidentifier");
@@ -412,8 +407,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -421,17 +416,17 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("TeamUserRole")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("UserRole")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -451,8 +446,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -465,8 +460,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -497,8 +492,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -506,8 +501,8 @@ namespace ScrumFlush.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModifiedById")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");

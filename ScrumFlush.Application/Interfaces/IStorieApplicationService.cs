@@ -1,8 +1,11 @@
-using ScrumFlush.Application.Dtos;
+using ScrumFlush.Application.Dtos.Get;
+using ScrumFlush.Application.Dtos.Post;
+using ScrumFlush.Application.Dtos.Put;
+using ScrumFlush.Core.Filters;
 
 namespace ScrumFlush.Application.Interfaces
 {
-    public interface IStorieApplicationService : IBaseApplicationService<StorieDTO>
+    public interface IStorieApplicationService : IBaseApplicationService<StorieGetDTO, StoriePostDTO, StoriePutDTO, StorieFilter>
     {
         
     }

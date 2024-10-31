@@ -1,8 +1,8 @@
 using ScrumFlush.Domain.Entity;
 
-namespace ScrumFlush.Application.Dtos
+namespace ScrumFlush.Application.Dtos.Get
 {
-    public class RoomDTO : BaseDTO
+    public class RoomGetDTO : BaseGetDTO
     {
         public Sprint? Sprint { get; set; }
         public string? Name { get; set; }

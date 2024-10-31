@@ -1,23 +1,22 @@
 using ScrumFlush.Core.Interfaces;
 using ScrumFlush.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ScrumFlush.Service.Services
 {
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
+    public class BaseService<TEntity, TFilters> : IBaseService<TEntity, TFilters>
+        where TEntity : class
+        where TFilters : class
     {
-        private readonly IBaseRepository<TEntity> repository;
+        private readonly IBaseRepository<TEntity, TFilters> repository;
 
-        public BaseService(IBaseRepository<TEntity> repository)
+        public BaseService(IBaseRepository<TEntity, TFilters> repository)
         {
             this.repository = repository;
         }
 
-        public async Task<IList<TEntity>> GetAll()
+        public async Task<IList<TEntity>> GetAll(TFilters filters)
         {
-            return await repository.GetAll();
+            return await repository.GetAll(filters);
         }
 
         public async Task<TEntity> GetById(Guid id)
@@ -25,14 +24,14 @@ namespace ScrumFlush.Service.Services
             return await repository.GetById(id);
         }
 
-        public async Task<TEntity> Create(TEntity entity)
+        public async Task<TEntity> Create(Guid authorId, TEntity entity)
         {
-            return await repository.Create(entity);
+            return await repository.Create(authorId, entity);
         }
 
-        public async Task<TEntity> Update(Guid id, TEntity entity)
+        public async Task<TEntity> Update(Guid authorId, Guid id, TEntity entity)
         {
-            return await repository.Update(id, entity);
+            return await repository.Update(authorId, id, entity);
         }
 
         public async Task<bool> Delete(Guid id)

@@ -1,6 +1,7 @@
 $infrastructurePath = ".\ScrumFlush.Infrastructure\"
 $apiPath = "..\ScrumFlush.Api"
 
+#cd .\ScrumFlush.Infrastructure\
 # dotnet ef migrations add FirstMigration --startup-project ../ScrumFlush.API
 
 try {

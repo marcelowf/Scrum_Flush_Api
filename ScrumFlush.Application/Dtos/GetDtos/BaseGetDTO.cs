@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ScrumFlush.Application.Dtos
+namespace ScrumFlush.Application.Dtos.Get
 {
-    public class BaseDTO
+    public class BaseGetDTO
     {
         public Guid? Id { get; set; }
-        public int? CreatedById { get; set; }
+        public Guid? CreatedById { get; set; }
         public int? ModifiedById { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }

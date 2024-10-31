@@ -1,13 +1,13 @@
 using ScrumFlush.Domain.Entity;
+using ScrumFlush.Domain.Enums;
 
-namespace ScrumFlush.Application.Dtos
+namespace ScrumFlush.Application.Dtos.Get
 {
-    public class PlayerDTO : BaseDTO
+    public class PlayerGetDTO : BaseGetDTO
     {
         public User? User { get; set; }
         public string? Name { get; set; }
-        public string? Role { get; set; }
-        public int? Type {get; set; }
+        public PlayerType? PlayerType {get; set; }
         public ICollection<RoomPlayer>? RoomPlayers { get; set; }
         public ICollection<Vote>? Votes { get; set; }
     }

@@ -1,8 +1,8 @@
 using ScrumFlush.Domain.Entity;
 
-namespace ScrumFlush.Application.Dtos
+namespace ScrumFlush.Application.Dtos.Get
 {
-    public class RoundDTO : BaseDTO
+    public class RoundGetDTO : BaseGetDTO
     {
         public Room? Room { get; set; }
         public Storie? Storie { get; set; }

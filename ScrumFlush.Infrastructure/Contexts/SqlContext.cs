@@ -21,9 +21,9 @@ namespace ScrumFlush.Infrastructure.Context
         public DbSet<Collection> Collection { get; set; }
         public DbSet<Card> Card { get; set; }
 
-        public SqlContext(DbContextOptions<SqlContext> options) : base(options) {}
-        
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Vote>()
                 .HasOne(p => p.Round)
@@ -46,7 +46,7 @@ namespace ScrumFlush.Infrastructure.Context
                 .HasOne(p => p.User)
                 .WithMany(p => p.TeamUsers)
                 .OnDelete(DeleteBehavior.Restrict);
-                
+
             modelBuilder.Entity<TeamSprint>()
                 .HasOne(p => p.Team)
                 .WithMany(p => p.TeamSprints)
@@ -55,12 +55,12 @@ namespace ScrumFlush.Infrastructure.Context
                 .HasOne(p => p.Sprint)
                 .WithMany(p => p.TeamSprints)
                 .OnDelete(DeleteBehavior.Restrict);
-                
+
             modelBuilder.Entity<Storie>()
                 .HasOne(p => p.Sprint)
                 .WithMany(p => p.Stories)
                 .OnDelete(DeleteBehavior.Restrict);
-                
+
             modelBuilder.Entity<Round>()
                 .HasOne(p => p.Storie)
                 .WithMany(p => p.Rounds)
@@ -69,7 +69,7 @@ namespace ScrumFlush.Infrastructure.Context
                 .HasOne(p => p.Room)
                 .WithMany(p => p.RoomRounds)
                 .OnDelete(DeleteBehavior.Restrict);
-                
+
             modelBuilder.Entity<RoomPlayer>()
                 .HasOne(p => p.Player)
                 .WithMany(p => p.RoomPlayers)
@@ -78,7 +78,7 @@ namespace ScrumFlush.Infrastructure.Context
                 .HasOne(p => p.Room)
                 .WithMany(p => p.RoomPlayers)
                 .OnDelete(DeleteBehavior.Restrict);
-                
+
             modelBuilder.Entity<Room>()
                 .HasOne(p => p.Sprint)
                 .WithMany(p => p.Rooms)
@@ -93,7 +93,8 @@ namespace ScrumFlush.Infrastructure.Context
                 .HasOne(p => p.Collection)
                 .WithMany(p => p.Cards)
                 .OnDelete(DeleteBehavior.Restrict);
-                        
+                
+            /*
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
@@ -102,38 +103,36 @@ namespace ScrumFlush.Infrastructure.Context
                         .HasQueryFilter(CreateQueryFilter(entityType.ClrType));
                 }
             }
+            */
         }
-   
+
         private static LambdaExpression CreateQueryFilter(Type entityType)
         {
             var parameter = Expression.Parameter(entityType, "e");
 
-            var isDeletedProperty = Expression.Property(parameter, "IsDeleted");
-            var isDeletedFalse = Expression.Equal(isDeletedProperty, Expression.Constant(false));
+            var isDeletedFalse = Expression.Equal(Expression.Property(parameter, "IsDeleted"), Expression.Constant(false));
+            var createdByIdNotEmpty = Expression.NotEqual(Expression.Property(parameter, "CreatedById"), Expression.Constant(Guid.Empty));
 
-            var createdByIdProperty = Expression.Property(parameter, "CreatedById");
-            var createdByIdGreaterThanZero = Expression.GreaterThan(createdByIdProperty, Expression.Constant(0));
-
-            var combinedFilter = Expression.AndAlso(isDeletedFalse, createdByIdGreaterThanZero);
-
-            return Expression.Lambda(combinedFilter, parameter);
+            return Expression.Lambda(Expression.AndAlso(isDeletedFalse, createdByIdNotEmpty), parameter);
         }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public async Task<int> SaveChangesAsync(Guid authorId, CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("CreatedAt") != null))
             {
                 if (entry.State == EntityState.Added)
                 {
                     entry.Property("CreatedAt").CurrentValue = DateTimeZone.HrBrasilia(DateTime.UtcNow);
+                    entry.Property("CreatedById").CurrentValue = authorId;
                 }
-                if (entry.State == EntityState.Modified)
+                else if (entry.State == EntityState.Modified)
                 {
                     entry.Property("ModifiedAt").CurrentValue = DateTimeZone.HrBrasilia(DateTime.UtcNow);
+                    entry.Property("ModifiedById").CurrentValue = authorId;
                 }
             }
 
-            return await base.SaveChangesAsync().ConfigureAwait(false);
+            return await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }
