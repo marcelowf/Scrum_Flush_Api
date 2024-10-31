@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ScrumFlush.Domain.Enums;
 
 namespace ScrumFlush.Domain.Entity
 {
@@ -12,8 +13,8 @@ namespace ScrumFlush.Domain.Entity
         [Required, ForeignKey("User")]
         public Guid UserId { get; set; }
         public required User User { get; set; }
-        
+
         [Required]
-        public required int UserRole { get; set; }
+        public required TeamUserRole TeamUserRole { get; set; }
     }
 }

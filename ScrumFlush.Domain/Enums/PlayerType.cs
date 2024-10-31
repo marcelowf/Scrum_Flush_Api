@@ -4,6 +4,5 @@ namespace ScrumFlush.Domain.Enums
     {
         Player,
         Guest
-        
     }
 }

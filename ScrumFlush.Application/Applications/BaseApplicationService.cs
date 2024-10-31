@@ -1,49 +1,49 @@
 using AutoMapper;
 using ScrumFlush.Application.Interfaces;
 using ScrumFlush.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ScrumFlush.Application.Applications
 {
-    public abstract class BaseApplicationService<TDto, TEntity> : IBaseApplicationService<TDto>
-        where TDto : class
+    public abstract class BaseApplicationService<TGetDto, TPostDto, TPutDto, TEntity, TFilters> : IBaseApplicationService<TGetDto, TPostDto, TPutDto, TFilters>
+        where TGetDto : class
+        where TPostDto : class
+        where TPutDto : class
         where TEntity : class
+        where TFilters : class
     {
         private readonly IMapper mapper;
-        private readonly IBaseService<TEntity> baseService;
+        private readonly IBaseService<TEntity, TFilters> baseService;
 
-        protected BaseApplicationService(IMapper mapper, IBaseService<TEntity> baseService)
+        protected BaseApplicationService(IMapper mapper, IBaseService<TEntity, TFilters> baseService)
         {
             this.mapper = mapper;
             this.baseService = baseService;
         }
 
-        public async Task<IList<TDto>> GetAll()
+        public async Task<IList<TGetDto>> GetAll(TFilters filters)
         {
-            var list = await this.baseService.GetAll();
-            return this.mapper.Map<IList<TDto>>(list);
+            var entities = await this.baseService.GetAll(filters);
+            return this.mapper.Map<IList<TGetDto>>(entities);
         }
 
-        public async Task<TDto> GetById(Guid id)
+        public async Task<TGetDto> GetById(Guid id)
         {
             var entity = await this.baseService.GetById(id);
-            return this.mapper.Map<TDto>(entity);
+            return this.mapper.Map<TGetDto>(entity);
         }
 
-        public async Task<TDto> Create(TDto dto)
+        public async Task<TGetDto> Create(TPostDto dto)
         {
             var entity = this.mapper.Map<TEntity>(dto);
-            var createdEntity = await this.baseService.Create(entity);
-            return this.mapper.Map<TDto>(createdEntity);
+            var createdEntity = await this.baseService.Create((Guid)typeof(TPostDto).GetProperty("AuthorId").GetValue(dto), entity);
+            return this.mapper.Map<TGetDto>(createdEntity);
         }
 
-        public async Task<TDto> Update(Guid id, TDto dto)
+        public async Task<TGetDto> Update(Guid id, TPutDto dto)
         {
             var entity = this.mapper.Map<TEntity>(dto);
-            var updatedEntity = await this.baseService.Update(id, entity);
-            return this.mapper.Map<TDto>(updatedEntity);
+            var updatedEntity = await this.baseService.Update((Guid)typeof(TPostDto).GetProperty("AuthorId").GetValue(dto), id, entity);
+            return this.mapper.Map<TGetDto>(updatedEntity);
         }
 
         public async Task<bool> Delete(Guid id)

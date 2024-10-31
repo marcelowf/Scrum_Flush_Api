@@ -9,9 +9,9 @@ namespace ScrumFlush.Domain.Entity
         public Guid Id { get; set; }
 
         [Required]
-        public int CreatedById { get; set; }
+        public Guid CreatedById { get; set; }
 
-        public int? ModifiedById { get; set; }
+        public Guid? ModifiedById { get; set; }
 
         [Required ,DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; }

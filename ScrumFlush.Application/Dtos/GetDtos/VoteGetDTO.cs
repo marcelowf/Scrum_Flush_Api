@@ -1,8 +1,8 @@
 using ScrumFlush.Domain.Entity;
 
-namespace ScrumFlush.Application.Dtos
+namespace ScrumFlush.Application.Dtos.Get
 {
-    public class VoteDTO : BaseDTO
+    public class VoteGetDTO : BaseGetDTO
     {
         public Round? Round { get; set; }
         public Player? Player { get; set; }

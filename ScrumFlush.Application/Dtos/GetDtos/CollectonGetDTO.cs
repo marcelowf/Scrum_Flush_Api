@@ -1,8 +1,8 @@
 using ScrumFlush.Domain.Entity;
 
-namespace ScrumFlush.Application.Dtos
+namespace ScrumFlush.Application.Dtos.Get
 {
-    public class CollectionDTO : BaseDTO
+    public class CollectionGetDTO : BaseGetDTO
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

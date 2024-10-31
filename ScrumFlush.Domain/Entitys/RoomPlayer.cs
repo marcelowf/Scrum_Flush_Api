@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ScrumFlush.Domain.Enums;
 
 namespace ScrumFlush.Domain.Entity
 {
@@ -14,6 +15,6 @@ namespace ScrumFlush.Domain.Entity
         public required Player Player { get; set; }
 
         [Required ,MaxLength(15)]
-        public required string PlayerRole { get; set; }
+        public required RoomPlayerRole RoomPlayerRole { get; set; }
     }
 }

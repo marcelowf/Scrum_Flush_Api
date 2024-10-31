@@ -1,13 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using ScrumFlush.Core.Interfaces;
 using ScrumFlush.Infrastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ScrumFlush.Infrastructure.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity, TFilters> : IBaseRepository<TEntity, TFilters>
+        where TEntity : class
+        where TFilters : class
     {
         private readonly SqlContext sqlContext;
 
@@ -15,8 +14,9 @@ namespace ScrumFlush.Infrastructure.Repositories
         {
             this.sqlContext = sqlContext;
         }
-
-        public async Task<IList<TEntity>> GetAll()
+ 
+        // TODO: Add Filter
+        public async Task<IList<TEntity>> GetAll(TFilters filters)
         {
             return await this.sqlContext.Set<TEntity>().ToListAsync();
         }
@@ -26,14 +26,14 @@ namespace ScrumFlush.Infrastructure.Repositories
             return await this.sqlContext.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<TEntity> Create(TEntity entity)
+        public async Task<TEntity> Create(Guid authorId, TEntity entity)
         {
             await this.sqlContext.Set<TEntity>().AddAsync(entity);
-            await this.sqlContext.SaveChangesAsync();
+            await this.sqlContext.SaveChangesAsync(authorId);
             return entity;
         }
 
-        public async Task<TEntity> Update(Guid id, TEntity entity)
+        public async Task<TEntity> Update(Guid authorId, Guid id, TEntity entity)
         {
             var existingEntity = await GetById(id);
             if (existingEntity == null)
@@ -42,7 +42,7 @@ namespace ScrumFlush.Infrastructure.Repositories
             }
 
             this.sqlContext.Entry(existingEntity).CurrentValues.SetValues(entity);
-            await this.sqlContext.SaveChangesAsync();
+            await this.sqlContext.SaveChangesAsync(authorId);
             return entity;
         }
 
@@ -55,7 +55,6 @@ namespace ScrumFlush.Infrastructure.Repositories
             }
 
             this.sqlContext.Set<TEntity>().Remove(entity);
-            await this.sqlContext.SaveChangesAsync();
             return true;
         }
 

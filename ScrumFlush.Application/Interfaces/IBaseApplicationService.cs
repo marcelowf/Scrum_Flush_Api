@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace ScrumFlush.Application.Interfaces
 {
-    public interface IBaseApplicationService<TEntity> where TEntity : class
+    public interface IBaseApplicationService<TGetDto, TPostDto, TPutDto, TFilters> 
+        where TGetDto : class
+        where TPostDto : class
+        where TPutDto : class
+        where TFilters : class
     {
-        Task<IList<TEntity>> GetAll();
-
-        Task<TEntity> GetById(Guid id);
-
-        Task<TEntity> Create(TEntity entity);
-
-        Task<TEntity> Update(Guid id, TEntity entity);
-
+        Task<IList<TGetDto>> GetAll(TFilters filters);
+        Task<TGetDto> GetById(Guid id);
+        Task<TGetDto> Create(TPostDto entity);
+        Task<TGetDto> Update(Guid id, TPutDto entity);
         Task<bool> Delete(Guid id);
-
         Task<bool> SoftDelete(Guid id);
     }
 }

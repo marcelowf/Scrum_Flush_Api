@@ -1,10 +1,11 @@
+using ScrumFlush.Core.Filters;
 using ScrumFlush.Core.Interfaces;
 using ScrumFlush.Domain.Entity;
 using ScrumFlush.Service.Interfaces;
 
 namespace ScrumFlush.Service.Services
 {
-    public class PlayerService : BaseService<Player>, IPlayerService
+    public class PlayerService : BaseService<Player, PlayerFilter>, IPlayerService
     {
         private readonly IPlayerRepository playerRepository;
 
